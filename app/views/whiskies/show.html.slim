@@ -1,0 +1,9 @@
+div.container_inner.min_height_non_header
+  = link_to '< Mypage', whiskies_path, class: "back"
+  div.scroll_120
+    p= @whisky.name
+    div.whisky_detail
+      div.whisky_detail_name
+        p= image_tag @whisky.image if @whisky.image.attached?
+      div.whisky_detail_description = auto_link(simple_format(h(@whisky.description), {}, sanitize: false))
+    = link_to '編集', edit_whisky_path

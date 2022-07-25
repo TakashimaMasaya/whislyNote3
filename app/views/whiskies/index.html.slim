@@ -1,0 +1,15 @@
+div.container_inner.min_height_non_header
+  div.user
+    p.user_avater = image_tag current_user.avatar if current_user.avatar.attached?
+    div
+      p.user_name = link_to current_user.name, edit_user_path(current_user)
+      p.user_id 
+        | ＠
+        = current_user.id
+
+  div.whisky_lists.scroll_190
+    - @whiskyies.each do |whisky|
+      div.whisky_list
+        p = link_to whisky.name, whisky_path(whisky)
+        p = image_tag whisky.image if whisky.image.attached?
+

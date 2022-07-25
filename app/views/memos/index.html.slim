@@ -1,0 +1,12 @@
+div.container_inner.min_height_non_header
+  h1.main_title.memo_title 全てのメモ
+
+  ul.memo_lists
+    - @memos.each do |memo|
+      li.memo_list
+        = link_to memo.title, memo_path(memo)
+        span.memo_list_description = memo.description
+
+
+  p.fiexed_btn = link_to '+', new_memo_path
+

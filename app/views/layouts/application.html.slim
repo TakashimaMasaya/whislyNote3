@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title
+      | WhiskyNote
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body.container
+  header
+    div.header_inner
+      - unless current_user 
+        p = link_to 'Whisky Logo', root_url
+        nav
+          ul.header_lists
+            li.header_list = link_to '新規会員登録', new_user_path
+    
+    - if flash.notice.present?
+      p.notice = flash.notice
+
+  main
+    = yield
+
+  - if current_user 
+    footer.footer 
+      ul.footer_lists
+        / li.footer_list = link_to 'Blog', blogs_path
+        li.footer_list blog
+        li.footer_list = link_to 'Memo', memos_path
+        li.footer_list = link_to 'Add', new_whisky_path
+        li.footer_list = link_to 'Mypage', whiskies_path
+        / message
+        li.footer_list = link_to 'ログアウト', logout_path, method: :delete
+        

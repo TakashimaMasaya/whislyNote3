@@ -1,0 +1,27 @@
+// Place all the styles related to the memos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.memo_title {
+    height: 60px;
+    line-height: 60px;
+}
+
+.memo_lists {
+    max-height: calc( 100vh - 60px - 80px);
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.memo_list {
+    font-size: 16px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .8);
+    font-weight: bold;
+}
+
+.memo_list_description {
+    font-size: .8em;
+    opacity: .8;
+    display: block;
+    font-weight: normal;
+}

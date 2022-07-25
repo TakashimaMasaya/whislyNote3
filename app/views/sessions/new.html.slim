@@ -1,0 +1,12 @@
+h1.main_title.login_title ログイン
+
+div class="login_form"
+  = form_with scope: :session, local: true do |f|
+    div class="group"
+      = f.label :email, 'メールアドレス'
+      = f.text_field :email
+    div class="group"
+      = f.label :password, 'パスワード'
+      = f.text_field :password
+    = f.submit 'ログイン', class: 'button buttonBlue'
+

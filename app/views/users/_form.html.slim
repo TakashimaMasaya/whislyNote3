@@ -1,0 +1,31 @@
+div class="login_form"
+  = form_with(model: user, local: true) do |form|
+    - if user.errors.any?
+      #error_explanation
+        h2
+          = pluralize(user.errors.count, "error")
+          |  prohibited this user from being saved:
+        ul
+          - user.errors.full_messages.each do |message|
+            li
+              = message
+
+    .group
+      = form.label :name
+      = form.text_field :name
+    .group
+      = form.label :email
+      = form.text_field :email
+    .group
+      = form.label :password, 'パスワード'
+      = form.password_field :password
+    .group
+      = form.label :password_confirmation, 'パスワード'
+      = form.password_field :password_confirmation
+    .group
+      = form.label :avatar
+      = form.file_field :avatar
+    .field
+      = form.label :admin do
+        = form.check_box :admin
+    = form.submit '登録', class: 'button buttonBlue'

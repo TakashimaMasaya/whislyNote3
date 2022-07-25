@@ -1,0 +1,7 @@
+div.container_inner.min_height_non_header
+  = link_to '< Memos', memos_path, class: "back"
+  h1 = @memo.title
+
+  p = auto_link(simple_format(h(@memo.description), {}, sanitize: false))
+
+= link_to '編集', edit_memo_path
