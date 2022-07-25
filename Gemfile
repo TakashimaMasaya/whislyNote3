@@ -67,5 +67,3 @@ gem 'html2slim'
 gem 'bcrypt'
 
 gem 'rails_autolink'
-
-gem 'sqlite3', '~> 1.3.6'
