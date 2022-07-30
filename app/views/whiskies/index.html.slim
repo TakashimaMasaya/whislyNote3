@@ -8,7 +8,7 @@ div.container_inner.min_height_non_header
         = current_user.id
 
   div.whisky_lists.scroll_190
-    - @whiskyies.each do |whisky|
+    - @whiskies.each do |whisky|
       div.whisky_list
         p = link_to whisky.name, whisky_path(whisky)
         p = image_tag whisky.image if whisky.image.attached?

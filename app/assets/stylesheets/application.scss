@@ -4,6 +4,7 @@
 @import 'users';
 @import 'whiskies';
 @import 'memos';
+@import 'blogs';
 * {
     box-sizing: border-box;
 }
@@ -12,29 +13,10 @@
     max-width: 500px;
     width: 100%;
     margin: 0 auto;
-    // position: absolute;
-    // width: 100%;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
 }
 
 .container_inner {
     margin: 0 5px;
-}
-
-.min_height_non_header {
-    min-height: calc( 100vh - 80px);
-}
-
-.scroll_120 {
-    max-height: calc( 100vh - 40px - 80px);
-    overflow-y: scroll;
-}
-
-.scroll_190 {
-    max-height: calc( 100vh - 110px - 80px);
-    overflow-y: scroll;
 }
 
 .header_inner {
@@ -134,8 +116,13 @@
     line-height: 80px;
 }
 
-// .footer {
-//     position: fixed;
-//     width: 100%;
-//     bottom: 0;
-// }
+main {
+    margin-bottom: 80px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 500px;
+}

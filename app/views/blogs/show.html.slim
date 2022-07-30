@@ -1,0 +1,22 @@
+div.container_inner
+  = link_to '< Blogs', blogs_path, class: "back"
+
+  p = image_tag @blog.thumbnail if @blog.thumbnail.attached?
+  p = auto_link(simple_format(h(@blog.description), {}, sanitize: false))
+
+  h2 コメントをする
+
+  = form_with(model:[@blog, @comment], method: :blog) do |f|
+    = f.text_area :comment_content
+    = f.hidden_field :blog_id, value: @blog.id
+    = f.submit 'コメントする'
+
+  h2 コメント一覧
+  - @comments.each do |comment|
+    p = comment.comment_content
+
+
+
+
+
+

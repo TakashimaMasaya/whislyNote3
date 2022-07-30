@@ -2,7 +2,7 @@ class WhiskiesController < ApplicationController
   before_action :set_whisky, only: [:show, :edit, :update, :destroy]
 
   def index
-    @whiskyies = current_user.whiskies
+    @whiskies = current_user.whiskies
   end
 
   def show

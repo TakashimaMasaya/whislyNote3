@@ -1,0 +1,29 @@
+div.container_inner.min_height_non_header
+  h1.main_title.memo_title 全てのブログ
+
+  ul.blog_lists
+    - @blogs.each do |blog|
+      div.blog_box
+        p.user_avater = image_tag blog.user.avatar if blog.user.avatar.attached?
+        div
+          p.blog_box_user = blog.user.name
+          p.blog_box_description 
+            = link_to blog.description, blog_path(blog)
+          p.blog_box_image 
+            = image_tag blog.thumbnail if blog.thumbnail.attached?
+            
+          - if blog.favorited?(current_user)
+            = link_to blog_favorites_path(blog.id), method: :delete do
+              <span style="color:red;">❤︎</span>
+              / = blog.favorited.count
+            end 
+          - else
+            = link_to blog_favorites_path(blog.id), method: :post do
+              <span>❤︎</span>
+              / = blog.favorited.count
+            end 
+          end
+
+
+  p.fiexed_btn = link_to '+', new_blog_path
+

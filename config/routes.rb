@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :whiskies
   resources :users
   resources :memos
-  # resources :blogs
+  resources :blogs do
+   resource :favorites, only: [:create, :destroy]
+   resources :comments, only: [:create]  #commentsコントローラへのルーティング
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
