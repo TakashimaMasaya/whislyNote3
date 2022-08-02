@@ -3,6 +3,6 @@ h1  トップページ
 - if current_user.admin?
   p ユーザー一覧
   - @users.each do |user|
-    p= link_to user.name, user_path(user)
+    p= link_to user.name, admin_user_path(user)
 
 

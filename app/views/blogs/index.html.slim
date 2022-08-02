@@ -1,4 +1,4 @@
-div.container_inner.min_height_non_header
+div.container_inner
   h1.main_title.memo_title 全てのブログ
 
   ul.blog_lists
@@ -6,7 +6,8 @@ div.container_inner.min_height_non_header
       div.blog_box
         p.user_avater = image_tag blog.user.avatar if blog.user.avatar.attached?
         div
-          p.blog_box_user = blog.user.name
+          p.blog_box_user 
+            = link_to blog.user.name, user_path(blog.user)
           p.blog_box_description 
             = link_to blog.description, blog_path(blog)
           p.blog_box_image 

@@ -1,0 +1,23 @@
+div.container_inner
+  = link_to '< users', admin_users_path, class: "back"
+  h1 管理画面：ユーザー詳細
+  p
+    strong
+      | Name:
+    = @user.name
+  p
+    strong
+      | email:
+    = @user.email
+  p
+    strong
+      | admin:
+    = @user.admin?
+  
+  hr
+
+  p フォローしている人
+  = @user.followings.count
+
+  p フォローされている人
+  = @user.followers.count

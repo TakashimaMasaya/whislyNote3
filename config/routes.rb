@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+  end
+  get 'relationships/followings'
+  get 'relationships/followers'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -6,7 +11,12 @@ Rails.application.routes.draw do
   root to: 'whiskies#index'
 
   resources :whiskies
-  resources :users
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+  
   resources :memos
   resources :blogs do
    resource :favorites, only: [:create, :destroy]
