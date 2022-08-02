@@ -67,3 +67,5 @@ gem 'html2slim'
 gem 'bcrypt'
 
 gem 'rails_autolink'
+
+gem "aws-sdk-s3", require: false
