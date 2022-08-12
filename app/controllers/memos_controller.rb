@@ -14,8 +14,12 @@ class MemosController < ApplicationController
 
   def create
     memo = Memo.new(memo_params.merge(user_id: current_user.id))
-    memo.save!
-    redirect_to memos_url, notice: "新しいMemoを作成しました"
+    if memo.save
+      redirect_to memos_url, notice: "新しいMemoを作成しました"
+    else
+      # render :newだとindexを参照してしまいエラーになる
+      redirect_to action: :new #これだとリダイレクトだからerrorの情報が消える？
+    end
   end
 
   def update

@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
   validates :description, presence: true
-
+  
   has_one_attached :thumbnail
   belongs_to :user
   has_many :favorites, dependent: :destroy

@@ -17,13 +17,21 @@ class WhiskiesController < ApplicationController
 
   def create
     whisky = Whisky.new(whisky_params.merge(user_id: current_user.id))
-    whisky.save!
-    redirect_to whiskies_url, notice: "新しいWhiskyを作成しました"
+    if whisky.save
+      redirect_to whiskies_url, notice: "新しいWhiskyを作成しました"
+    else
+      # render :newだとindexを参照してしまいエラーになる
+      redirect_to action: :new #これだとリダイレクトだからerrorの情報が消える？
+    end
   end
 
   def update
-    @whisky.update!(whisky_params)
-    redirect_to whiskies_url, notice: "Whiskyの情報を更新しました"
+    if @whisky.update(whisky_params)
+      redirect_to whiskies_url, notice: "Whiskyの情報を更新しました"
+    else
+      # render :newだとindexを参照してしまいエラーになる
+      redirect_to action: :show #これだとリダイレクトだからerrorの情報が消える？
+    end
   end
 
   def destroy

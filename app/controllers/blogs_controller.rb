@@ -21,13 +21,21 @@ class BlogsController < ApplicationController
 
   def create
     blog = Blog.new(blog_params.merge(user_id: current_user.id))
-    blog.save!
-    redirect_to blogs_url, notice: "新しいblogを作成しました"
+    if blog.save
+      redirect_to blogs_url, notice: "新しいblogを作成しました"
+    else
+      # render :newだとindexを参照してしまいエラーになる
+      redirect_to action: :new #これだとリダイレクトだからerrorの情報が消える？
+    end
   end
 
   def update
-    @blog.update!(blog_params)
-    redirect_to blogs_url, notice: "blogの情報を更新しました"
+    if @blog.update(blog_params)
+      redirect_to blogs_url, notice: "blogの情報を更新しました"
+    else
+      # render :newだとindexを参照してしまいエラーになる
+      redirect_to action: :show #これだとリダイレクトだからerrorの情報が消える？
+    end
   end
 
   def destroy
