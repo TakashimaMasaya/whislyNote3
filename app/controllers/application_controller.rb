@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user ##viewでログインしているユーザーとして使える
   before_action :login_required
 
+  def if_not_admin
+    redirect_to root_path unless current_user.admin?
+  end
+
   private
 
   def current_user ##コントローラーでログインしているユーザーとして使える

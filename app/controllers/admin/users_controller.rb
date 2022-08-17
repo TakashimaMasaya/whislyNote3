@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :if_not_admin
+  layout 'admin_application.html.slim'
   def index
     @users = User.all
   end

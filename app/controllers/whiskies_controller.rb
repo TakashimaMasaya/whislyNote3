@@ -1,5 +1,6 @@
 class WhiskiesController < ApplicationController
   before_action :set_whisky, only: [:show, :edit, :update, :destroy]
+  before_action :set_q, only: [:new, :search]
 
   def index
     @whiskies = current_user.whiskies
@@ -9,7 +10,7 @@ class WhiskiesController < ApplicationController
   end
 
   def new
-    @whisky = Whisky.new
+
   end
 
   def edit
@@ -18,7 +19,7 @@ class WhiskiesController < ApplicationController
   def create
     whisky = Whisky.new(whisky_params.merge(user_id: current_user.id))
     if whisky.save
-      redirect_to whiskies_url, notice: "新しいWhiskyを作成しました"
+      redirect_to admin_whiskies_url, notice: "新しいWhiskyを作成しました"
     else
       # render :newだとindexを参照してしまいエラーになる
       redirect_to action: :new #これだとリダイレクトだからerrorの情報が消える？
@@ -34,14 +35,22 @@ class WhiskiesController < ApplicationController
     end
   end
 
-  def destroy
-    @whisky.destroy
-    redirect_to whiskies_url, notice: "削除しました"
+  def search
+    @results = @q.result
   end
+
+  def addToUser
+    WhiskyUser.create(whisky_id: params[:id], user_id: current_user.id)
+    redirect_to whiskies_url, notice: "追加しました"
+  end
+
 
   private
 
-      # Only allow a list of trusted parameters through.
+  def set_q
+    @q = Whisky.ransack(params[:q])
+  end
+
   def whisky_params
     params.require(:whisky).permit(:name, :description, :image)
   end

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
+    resources :whiskies
   end
+
   get 'relationships/followings'
   get 'relationships/followers'
   get '/login', to: 'sessions#new'
@@ -10,7 +12,13 @@ Rails.application.routes.draw do
 
   root to: 'whiskies#index'
 
-  resources :whiskies
+  resources :whiskies do
+    collection do
+      get 'search'
+      post 'addToUser'
+    end
+  end
+
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

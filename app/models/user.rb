@@ -3,11 +3,14 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
+  # validates :validate_email
 
   has_secure_password
   has_one_attached :avatar
 
-  has_many :whiskies, dependent: :destroy
+  has_many :whisky_users
+  has_many :whiskies, through: :whisky_users
+
   has_many :memos, dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -33,5 +36,11 @@ class User < ApplicationRecord
   # フォローしているか判定
   def following?(user)
     followings.include?(user)
+  end
+
+  private
+
+  def validate_email
+    errors.add(:email, 'メールドレスの形式である必要があります') unless email&.include?('@')
   end
 end

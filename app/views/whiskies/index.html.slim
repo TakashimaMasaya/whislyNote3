@@ -1,4 +1,4 @@
-div.container_inner.min_height_non_header
+div.container_inner
   div.user
     p.user_avater = image_tag current_user.avatar if current_user.avatar.attached?
     div
@@ -6,8 +6,10 @@ div.container_inner.min_height_non_header
       p.user_id 
         | ＠
         = current_user.id
+  - if current_user.admin?
+    = link_to '管理者画面へ', admin_whiskies_path
 
-  div.whisky_lists.scroll_190
+  div.whisky_lists
     - @whiskies.each do |whisky|
       div.whisky_list
         p = link_to whisky.name, whisky_path(whisky)

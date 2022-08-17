@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title
+      | WhiskyNote
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body.container
+  header
+    div.header_inner
+    p 管理画面
+
+  main
+    = yield
+  footer.footer.admin 
+    ul.footer_lists
+      li.footer_list = link_to '登録済みwhisky', admin_whiskies_path
+      li.footer_list = link_to 'user一覧', admin_users_path
+      li.footer_list = link_to '管理画面から出る', root_path
+      li.footer_list = link_to 'ログアウト', logout_path, method: :delete
+        
