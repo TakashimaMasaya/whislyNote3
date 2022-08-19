@@ -11,9 +11,17 @@ class Admin::WhiskiesController < ApplicationController
     @whisky = Whisky.new
   end
 
+  def show
+    @whisky = Whisky.find(params[:id])
+  end
+
+  def edit
+  end
+
   def destroy
-    @whisky.destroy
-    redirect_to whiskies_url, notice: "削除しました"
+    whisky = Whisky.find(params[:id])
+    whisky.destroy!
+    redirect_to admin_whiskies_url, notice: "削除しました"
   end
 
   def create

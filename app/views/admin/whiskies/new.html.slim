@@ -1,4 +1,5 @@
-
+div.container_inner
+  = link_to '< 一覧へ', admin_whiskies_path, class: "back"
   = form_with(model: @whisky, local: true) do |form|
     - if @whisky.errors.any?
       #error_explanation

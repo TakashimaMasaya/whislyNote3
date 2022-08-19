@@ -2,24 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // トップページ
-.whisky_lists {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
-
 .whisky_list {
-    background-color: #B47C20;
-    width: calc( ( 100% - 15px) / 4);
-    margin-bottom: 2px;
-    aspect-ratio: 2/3;
+    width: 140px;
+    margin: 4px 0;
     text-align: center;
 }
 
+.whisky_image {
+    object-fit: contain;
+    height: 120px;
+}
+
+.whisky_list p {
+    line-height: 1;
+}
+
 .whisky_list a {
-    color: #fff;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 // 詳細ページ

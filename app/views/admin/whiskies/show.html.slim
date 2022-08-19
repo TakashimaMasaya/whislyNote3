@@ -1,0 +1,10 @@
+div.container_inner
+  = link_to '< 一覧へ', admin_whiskies_path, class: "back"
+  div
+    p= @whisky.name
+    div.whisky_detail
+      div.whisky_detail_name
+        p= image_tag @whisky.image if @whisky.image.attached?
+      div.whisky_detail_description = auto_link(simple_format(h(@whisky.description), {}, sanitize: false))
+    = link_to '編集', edit_admin_whisky_path
+    = link_to '削除', [:admin,@whisky], method: :delete, data: { confirm: "削除します。よろしいですか？"}

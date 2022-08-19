@@ -35,6 +35,11 @@ class WhiskiesController < ApplicationController
     end
   end
 
+  def destroy
+     WhiskyUser.find_by(whisky_id: params[:id], user_id: current_user.id).destroy
+     redirect_to whiskies_url, notice: "削除しました"
+  end
+
   def search
     @results = @q.result
   end

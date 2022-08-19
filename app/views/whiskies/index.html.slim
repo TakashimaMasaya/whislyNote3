@@ -1,17 +1,18 @@
 div.container_inner
-  div.user
-    p.user_avater = image_tag current_user.avatar if current_user.avatar.attached?
-    div
-      p.user_name = link_to current_user.name, edit_user_path(current_user)
-      p.user_id 
-        | ＠
-        = current_user.id
-  - if current_user.admin?
-    = link_to '管理者画面へ', admin_whiskies_path
+  div.user.flex.justify-between
+    div.flex.items-center
+      p.user_avater = image_tag current_user.avatar if current_user.avatar.attached?
+      div.flex.items-center
+        p.user_name = link_to current_user.name, edit_user_path(current_user)
+        p.user_id 
+          | ＠
+          = current_user.id
+    - if current_user.admin?
+      = link_to '管理者画面へ', admin_whiskies_path, class: "block inline-block shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded"
 
-  div.whisky_lists
+  div.flex
     - @whiskies.each do |whisky|
-      div.whisky_list
-        p = link_to whisky.name, whisky_path(whisky)
-        p = image_tag whisky.image if whisky.image.attached?
-
+      div.whisky_list.m-8.flex-wrap.space-between
+        = link_to whisky_path(whisky) do
+          = image_tag whisky.image, class:"whisky_image" if whisky.image.attached?
+          p.font-sl.mt-5 = whisky.name

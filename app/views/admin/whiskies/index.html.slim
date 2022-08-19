@@ -1,9 +1,9 @@
 div.container_inner
-  div.whisky_lists
+  p.text-center.mb-5 = link_to '新しいwhiskyを追加', new_admin_whisky_path,class:"bg-blue-900 hover:bg-blue-800 text-white rounded px-4 py-2 inline-block"
+  div.flex
     - @whiskies.each do |whisky|
       div.whisky_list
-        p = link_to whisky.name, whisky_path(whisky)
-        p = image_tag whisky.image if whisky.image.attached?
+        p = link_to whisky.name, admin_whisky_path(whisky)
+        p = image_tag whisky.image, class:"whisky_image" if whisky.image.attached?
   
-  = link_to '新しいwhiskyを追加', new_admin_whisky_path
 

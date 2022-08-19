@@ -3,6 +3,6 @@ class Whisky < ApplicationRecord
   
   has_one_attached :image
 
-  has_many :whisky_users
-  has_many :users, through: :whisky_users
+  has_many :whisky_users, dependent: :destroy
+  has_many :users, through: :whisky_users, dependent: :destroy
 end

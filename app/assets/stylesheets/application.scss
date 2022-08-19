@@ -9,12 +9,6 @@
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 .container_inner {
     margin: 0 5px;
 }
@@ -122,11 +116,4 @@
 
 main {
     margin-bottom: 80px;
-}
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 500px;
 }

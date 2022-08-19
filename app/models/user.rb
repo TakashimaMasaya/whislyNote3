@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_secure_password
   has_one_attached :avatar
 
-  has_many :whisky_users
-  has_many :whiskies, through: :whisky_users
+  has_many :whisky_users, dependent: :destroy
+  has_many :whiskies, through: :whisky_users, dependent: :destroy
 
   has_many :memos, dependent: :destroy
   has_many :blogs, dependent: :destroy

@@ -9,7 +9,8 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body.container
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
+  body.container.m-auto
   header
     div.header_inner
       - unless current_user 
@@ -18,19 +19,41 @@ html
           ul.header_lists
             li.header_list = link_to '新規会員登録', new_user_path
     
-    - if flash.notice.present?
-      p.notice = flash.notice
+    / - if flash.notice.present?
+    /   p.notice = flash.notice
 
   main
     = yield
 
   - if current_user
-    footer.footer 
-      ul.footer_lists
-        li.footer_list = link_to 'Blog', blogs_path
-        li.footer_list = link_to 'Memo', memos_path
-        li.footer_list = link_to 'Add', new_whisky_path
-        li.footer_list = link_to 'Mypage', whiskies_path
+    footer.footer.admin.fixed.bottom-0.w-full.container 
+      div.h-16.w-full.bg-black.bg-opacity-50
+        ul.w-full.h-full.flex.justify-center.items-center
+          li.flex.h-full.items-center.hover:bg-black.hover:bg-opacity-50
+            span.mx-4.text-white
+              = link_to 'Blog', blogs_path
+            span.h-8.w-px.bg-gray-300
+          li.flex.h-full.items-center.hover:bg-black.hover:bg-opacity-50
+            span.mx-4.text-white
+              = link_to 'Memo', memos_path
+            span.h-8.w-px.bg-gray-300
+          li.flex.h-full.items-center.hover:bg-black.hover:bg-opacity-50
+            span.mx-4.text-white
+              = link_to 'Add', new_whisky_path
+            span.h-8.w-px.bg-gray-300
+          li.flex.h-full.items-center.hover:bg-black.hover:bg-opacity-50
+            span.mx-4.text-white
+              = link_to link_to 'Mypage', whiskies_path
+            span.h-8.w-px.bg-gray-300
+          li.flex.h-full.items-center.hover:bg-black.hover:bg-opacity-50
+            span.mx-4.text-white
+              = link_to link_to 'ログアウト', logout_path, method: :delete
+            span.h-8.w-px.bg-gray-300
+      / ul.footer_lists
+      /   li.footer_list = link_to 'Blog', blogs_path
+      /   li.footer_list = link_to 'Memo', memos_path
+      /   li.footer_list = link_to 'Add', new_whisky_path
+      /   li.footer_list = link_to 'Mypage', whiskies_path
         / message
         li.footer_list = link_to 'ログアウト', logout_path, method: :delete
         
