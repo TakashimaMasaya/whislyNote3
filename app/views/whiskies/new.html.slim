@@ -1,11 +1,15 @@
 div.container_inner
-  = link_to '< Mypage', whiskies_path, class: "back"
   h1.main_title 新しいWhiskyを登録
   / = render partial: 'form', locals: { whisky: @whisky }
-  
   = search_form_for @q, url: search_whiskies_path do |f|
-    = f.label :name_cont, 'ウィスキーの名前'
-    = f.search_field :name_cont
-    <br>
-    = f.submit '検索'
-
+    .w-full
+      .mb-3.xl:w-96.w-full
+        .input-group.relative.flex.flex-wrap.items-stretch.w-full.mb-4
+          = f.search_field :name_cont, class: "form-control relative flex-auto min-w-0 block px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition w-1/2 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          = f.submit '検索', id:"button-addon3", class: "btn inline-block cursor-pointer px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-40"
+  table 
+    - @whiskies.each do |whisky|
+      tr 
+        td = link_to whisky.name
+        td = button_to '追加' , {controller: 'whiskies', action: 'addToUser'},{params: {id:whisky.id}, class: "inline-block cursor-pointer px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"}
+        / td = button_to '削除', {controller: 'whiskies', action: 'destroy'}, method: :delete, params: {id:whisky.id}

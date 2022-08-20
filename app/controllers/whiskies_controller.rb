@@ -10,7 +10,7 @@ class WhiskiesController < ApplicationController
   end
 
   def new
-
+    @whiskies = Whisky.all
   end
 
   def edit

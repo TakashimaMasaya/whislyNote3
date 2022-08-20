@@ -1,8 +1,11 @@
 div.container_inner
-  = link_to '< Mypage', whiskies_path, class: "back"
+  = link_to '< Mypage', new_whisky_path, class: "back"
   h1
     | 検索結果
   table
     - @results.each do |result|
-      = link_to result.name, whisky_path(result)
-      = button_to '追加', {controller: 'whiskies', action: 'addToUser'},{params: {id:result.id}}
+      tr
+        td = link_to result.name, whisky_path(result)
+        td = button_to '追加', {controller: 'whiskies', action: 'addToUser'},{params: {id:result.id}}
+        
+
